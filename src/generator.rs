@@ -8,7 +8,7 @@ use crate::value::Value;
 use crate::variant;
 
 static RUNTIME: &str = r#"
-    #![allow(unused_mut, unused_parens)]
+    #![allow(dead_code, unused_mut, unused_parens)]
 
     use std::fmt::Display;
     use std::time::{SystemTime, UNIX_EPOCH};
@@ -133,7 +133,7 @@ impl expr::Visitor for Generator {
             Value::False => "false".to_string(),
             Value::True => "true".to_string(),
             Value::Number(number) => number.to_string(),
-            Value::String(string) => string.to_string(),
+            Value::String(string) => format!("\"{}\"", string),
         }
     }
 }
